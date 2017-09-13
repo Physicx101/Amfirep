@@ -24,6 +24,8 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
         this.tabCount = tabCount;
     }
 
+
+
     //Overriding method getItem
     @Override
     public Fragment getItem(int position) {
@@ -45,6 +47,7 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
                 return null;
         }
     }
+
 
     //Overriden method getCount to get the number of tabs
     @Override

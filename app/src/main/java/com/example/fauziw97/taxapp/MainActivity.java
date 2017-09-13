@@ -1,7 +1,6 @@
 package com.example.fauziw97.taxapp;
 
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,11 +24,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-
-        //set adapter to ViewPager
-        viewPager.setAdapter(new TabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount()));
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("LIZARD").setIcon(R.drawable.selector_lizard));
@@ -39,8 +33,25 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        //set adapter to ViewPager
+        viewPager.setAdapter(new TabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount()));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
+
         //Adding onTabSelectedListener to swipe views
         tabLayout.addOnTabSelectedListener(this);
+
+        /*TabLayout.Tab tabLizard = tabLayout.getTabAt(0);
+        tabLizard.setIcon(R.drawable.selector_lizard);
+        TabLayout.Tab tabFrog = tabLayout.getTabAt(1);
+        tabLizard.setIcon(R.drawable.selector_frog);
+        TabLayout.Tab tabSnake = tabLayout.getTabAt(2);
+        tabLizard.setIcon(R.drawable.selector_snake);
+        TabLayout.Tab tabTurtle = tabLayout.getTabAt(3);
+        tabLizard.setIcon(R.drawable.selector_turtle);*/
 
 
     }
