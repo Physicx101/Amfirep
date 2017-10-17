@@ -15,6 +15,9 @@ import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Fauziw97 on 9/15/17.
  */
@@ -22,15 +25,14 @@ public class SpeciesAdapter extends FirebaseRecyclerAdapter<SpeciesAdapter.ViewH
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView speciesImage;
-        TextView speciesName;
-        TextView speciesLatin;
+        @BindView(R.id.species_image) ImageView speciesImage;
+        @BindView(R.id.species_name) TextView speciesName;
+        @BindView(R.id.species_status) TextView speciesStatus;
+
 
         public ViewHolder(View view) {
             super(view);
-            speciesImage = (ImageView) view.findViewById(R.id.species_image);
-            speciesName = (TextView) view.findViewById(R.id.species_name);
-            speciesLatin = (TextView) view.findViewById(R.id.species_latin);
+            ButterKnife.bind(this, view);
         }
     }
 
@@ -42,6 +44,7 @@ public class SpeciesAdapter extends FirebaseRecyclerAdapter<SpeciesAdapter.ViewH
     @Override public SpeciesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_species, parent, false);
+        ButterKnife.bind(this, view);
 
         return new ViewHolder(view);
     }
@@ -50,7 +53,7 @@ public class SpeciesAdapter extends FirebaseRecyclerAdapter<SpeciesAdapter.ViewH
         SpeciesModel species = getItem(position);
         holder.speciesImage.setImageResource(species.getSpeciesImage());
         holder.speciesName.setText(species.getSpeciesName());
-        holder.speciesLatin.setText(species.getSpeciesLatin());
+        holder.speciesStatus.setText(species.getSpeciesStatus());
     }
 
     @Override protected void itemAdded(SpeciesModel item, String key, int position) {

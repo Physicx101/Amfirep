@@ -42,17 +42,17 @@
                 android:id="@+id/species_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Komodo Dragon"
+                tools:text="Varanus komodoensis"
                 android:layout_marginBottom="4dp"
-                android:textStyle="bold"/>
+                android:textStyle="italic"/>
 
             <TextView
-                android:id="@+id/species_latin"
+                android:id="@+id/species_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Varanus komodoensis"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="italic"/>
+                tools:text="Endangered"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"/>
 
         </LinearLayout>
 

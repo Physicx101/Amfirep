@@ -8,7 +8,7 @@ public class SpeciesModel {
 
     private int speciesImage;
     private String speciesName;
-    private String speciesLatin;
+    private String speciesStatus;
 
     public int getSpeciesImage() {
         return speciesImage;
@@ -26,11 +26,11 @@ public class SpeciesModel {
         this.speciesName = speciesName;
     }
 
-    public String getSpeciesLatin() {
-        return speciesLatin;
+    public String getSpeciesStatus() {
+        return speciesStatus;
     }
 
-    public void setSpeciesLatin(String speciesLatin) {
-        this.speciesLatin = speciesLatin;
+    public void setSpeciesStatus(String speciesStatus) {
+        this.speciesStatus = speciesStatus;
     }
 }
