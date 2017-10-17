@@ -1,10 +1,12 @@
 package com.example.fauziw97.taxapp.Adapter;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ViewGroup;
 
+import com.example.fauziw97.taxapp.Model.SpeciesModel;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -12,6 +14,7 @@ import com.google.firebase.database.Query;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Matteo on 24/08/2015.
@@ -51,7 +54,7 @@ public abstract class FirebaseRecyclerAdapter<ViewHolder extends RecyclerView.Vi
      * @param items List of items that will load the adapter before starting the listener.
      *              Generally null or empty, but this can be useful when dealing with a
      *              configuration change (e.g.: reloading the adapter after a device rotation).
-     *              Be careful: keys must be coherent with this list.
+     *              Be careful: keys must be coherent with this list.o
      * @param keys  List of keys of items that will load the adapter before starting the listener.
      *              Generally null or empty, but this can be useful when dealing with a
      *              configuration change (e.g.: reloading the adapter after a device rotation).
@@ -118,18 +121,7 @@ public abstract class FirebaseRecyclerAdapter<ViewHolder extends RecyclerView.Vi
 
         @Override
         public void onChildRemoved(DataSnapshot dataSnapshot) {
-            String key = dataSnapshot.getKey();
 
-            if (mKeys.contains(key)) {
-                int index = mKeys.indexOf(key);
-                T item = mItems.get(index);
-
-                mKeys.remove(index);
-                mItems.remove(index);
-
-                notifyItemRemoved(index);
-                itemRemoved(item, key, index);
-            }
         }
 
         @Override
@@ -167,6 +159,9 @@ public abstract class FirebaseRecyclerAdapter<ViewHolder extends RecyclerView.Vi
         }
 
     };
+
+    public FirebaseRecyclerAdapter(List<SpeciesModel> speciesModels, Context context) {
+    }
 
     @Override
     public abstract ViewHolder onCreateViewHolder(ViewGroup parent, int viewType);

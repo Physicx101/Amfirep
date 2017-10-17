@@ -4,15 +4,14 @@
                                     android:layout_width="140dp"
                                     android:layout_height="200dp"
                                     xmlns:tools="http://schemas.android.com/tools"
-                                    android:layout_marginBottom="8dp"
-                                    android:layout_marginLeft="8dp"
-                                    android:layout_marginRight="8dp"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_weight="1"
+                                    android:layout_marginBottom="4dp"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_marginTop="4dp"
                                     android:background="?attr/selectableItemBackground"
                                     android:foreground="?attr/selectableItemBackground"
                                     card_view:cardCornerRadius="4dp"
-                                    card_view:cardElevation="4dp">
+                                    card_view:cardElevation="2dp">
 
     <RelativeLayout
         android:layout_width="match_parent"

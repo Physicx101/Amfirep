@@ -1,23 +1,25 @@
 package com.example.fauziw97.taxapp;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
-
 import com.example.fauziw97.taxapp.Adapter.TabPagerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -42,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         //Adding onTabSelectedListener to swipe views
         tabLayout.addOnTabSelectedListener(this);
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
