@@ -6,15 +6,20 @@ package com.example.fauziw97.taxapp.Model;
 
 public class SpeciesModel {
 
-    private int speciesImage;
+    private String speciesImage;
     private String speciesName;
     private String speciesStatus;
 
-    public int getSpeciesImage() {
+    public SpeciesModel(String speciesName, String speciesStatus) {
+        this.speciesName = speciesName;
+        this.speciesStatus = speciesStatus;
+    }
+
+    public String getSpeciesImage() {
         return speciesImage;
     }
 
-    public void setSpeciesImage(int speciesImage) {
+    public void setSpeciesImage(String speciesImage) {
         this.speciesImage = speciesImage;
     }
 
