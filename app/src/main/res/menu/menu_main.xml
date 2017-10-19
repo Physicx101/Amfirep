@@ -16,9 +16,9 @@
         app:showAsAction="never"/>
 
     <item android:id="@+id/search"
-          android:title="Cari Spesies"
+          android:title="@string/search_hint"
           android:icon="@drawable/magnify"
-          app:showAsAction="collapseActionView|ifRoom"
-          android:actionViewClass="android.widget.SearchView" />
+          android:orderInCategory="100"
+          app:showAsAction="ifRoom"/>
 
 </menu>

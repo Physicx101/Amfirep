@@ -83,7 +83,7 @@ public class SpeciesDetails extends AppCompatActivity {
                 tvFamily.setText("Familia: " + dataSnapshot.child("Familia").getValue().toString());
                 tvGenus.setText("Genus: " + dataSnapshot.child("Genus").getValue().toString());
                 tvIsiDeskripsi.setText(dataSnapshot.child("Deskripsi").getValue().toString());
-                tvIsiHabitat.setText(dataSnapshot.child("Distribusi").getValue().toString());
+                tvIsiHabitat.setText(dataSnapshot.child("Habitat").getValue().toString());
                 tvIsiDistribute.setText(dataSnapshot.child("Distribusi").getValue().toString());
             }
 
