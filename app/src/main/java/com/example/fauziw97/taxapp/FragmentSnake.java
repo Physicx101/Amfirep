@@ -1,6 +1,5 @@
 package com.example.fauziw97.taxapp;
 
-import android.app.ProgressDialog;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -67,11 +67,9 @@ public class FragmentSnake extends Fragment {
 
     private void retrieveData() {
 
-        final ProgressDialog Dialog = new ProgressDialog(getActivity(), R.style.AppTheme_Dark_Dialog);
-        Dialog.setMessage("Fetching file .... ");
-        Dialog.show();
-        DatabaseReference snakeData = mRef.child("Reptilia");
-        snakeData.addValueEventListener(new ValueEventListener() {
+        DatabaseReference snakeData = mRef.child("Amfirep");
+        Query snakeList = snakeData.orderByChild("Jenis").equalTo("Snake");
+        snakeList.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -85,7 +83,6 @@ public class FragmentSnake extends Fragment {
 
                     mAdapter = new SpeciesAdapter(mSpeciesModels, getActivity());
                     mRecyclerView.setAdapter(mAdapter);
-                    Dialog.hide();
                 }
             }
 

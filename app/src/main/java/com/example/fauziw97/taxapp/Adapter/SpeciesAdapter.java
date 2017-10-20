@@ -1,6 +1,7 @@
 package com.example.fauziw97.taxapp.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.fauziw97.taxapp.Model.SpeciesModel;
 import com.example.fauziw97.taxapp.R;
+import com.example.fauziw97.taxapp.SpeciesDetails;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,16 +37,32 @@ public class SpeciesAdapter extends RecyclerView.Adapter<SpeciesAdapter.ViewHold
         this.context = context;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.species_image) ImageView speciesImage;
-        @BindView(R.id.species_name) TextView speciesName;
-        @BindView(R.id.species_status) TextView speciesStatus;
+        @BindView(R.id.species_image)
+        ImageView speciesImage;
+        @BindView(R.id.species_name)
+        TextView speciesName;
+        @BindView(R.id.species_status)
+        TextView speciesStatus;
+        View root;
 
 
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            root = view;
+            root.setClickable(true);
+            root.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            SpeciesModel species = (SpeciesModel) view.getTag();
+            Intent intent = new Intent(context, SpeciesDetails.class);
+            intent.putExtra("speciesName", species.getSpeciesName());
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         }
     }
 
@@ -53,7 +71,8 @@ public class SpeciesAdapter extends RecyclerView.Adapter<SpeciesAdapter.ViewHold
         super(query, items, keys);
     }*/
 
-    @Override public SpeciesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override
+    public SpeciesAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_species, parent, false);
         ButterKnife.bind(this, view);
@@ -61,13 +80,16 @@ public class SpeciesAdapter extends RecyclerView.Adapter<SpeciesAdapter.ViewHold
         return new ViewHolder(view);
     }
 
-    @Override public void onBindViewHolder(SpeciesAdapter.ViewHolder holder, int position) {
+    @Override
+    public void onBindViewHolder(SpeciesAdapter.ViewHolder holder, int position) {
+        holder.root.setTag(speciesModels.get(position));
         SpeciesModel species = speciesModels.get(position);
         /*Picasso.with(context)
                 .load(species.getSpeciesImage())
                 .into(holder.speciesImage);*/
         holder.speciesName.setText(species.getSpeciesName());
         holder.speciesStatus.setText(species.getSpeciesStatus());
+
     }
 
     @Override
@@ -75,7 +97,7 @@ public class SpeciesAdapter extends RecyclerView.Adapter<SpeciesAdapter.ViewHold
         return speciesModels.size();
     }
 
-    //Need to add onclick here
+
 
 
 
