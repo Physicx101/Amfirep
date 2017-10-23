@@ -116,6 +116,21 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     });
     }
 
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -153,20 +168,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        viewPager.setCurrentItem(tab.getPosition());
-    }
 
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
 
     public void addSuggestion(){
         DatabaseReference mRootref = FirebaseDatabase.getInstance().getReference();

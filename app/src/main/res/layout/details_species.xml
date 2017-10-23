@@ -33,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
+                style="@style/appBarTheme"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -47,39 +48,65 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/horizontal_recycler_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    />
+            </LinearLayout>
+
             <include
-                layout="@layout/card_klasifikasi"
+                android:id="@+id/nama"
+                layout="@layout/layout_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <include
+                layout="@layout/item_divider"/>
+
+            <include
                 android:id="@+id/klasifikasi"
+                layout="@layout/layout_klasifikasi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"/>
+                />
 
             <include
-                layout="@layout/card_deskripsi"
+                layout="@layout/item_divider"/>
+
+            <include
                 android:id="@+id/deskripsi"
+                layout="@layout/layout_deskripsi"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp" />
+                android:layout_height="wrap_content"/>
 
             <include
-                layout="@layout/card_habitat"
+                layout="@layout/item_divider"/>
+
+            <include
                 android:id="@+id/habitat"
+                layout="@layout/layout_habitat"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"/>
+                android:layout_height="wrap_content"/>
 
             <include
-                layout="@layout/card_distribusi"
+                layout="@layout/item_divider"/>
+
+            <include
                 android:id="@+id/distribusi"
+                layout="@layout/layout_distribusi"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"/>
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

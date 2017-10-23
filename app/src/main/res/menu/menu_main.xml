@@ -17,7 +17,7 @@
 
     <item android:id="@+id/search"
           android:title="@string/search_hint"
-          android:icon="@drawable/magnify"
+          android:icon="@drawable/ic_magnify"
           android:orderInCategory="100"
           app:showAsAction="ifRoom"/>
 
