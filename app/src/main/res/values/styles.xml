@@ -27,6 +27,10 @@
         <item name="android:windowBackground">@drawable/background</item>
     </style>
 
+    <style name="appBarTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+
     <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorHeight">2dp</item>
         <item name="tabPaddingStart">8dp</item>
