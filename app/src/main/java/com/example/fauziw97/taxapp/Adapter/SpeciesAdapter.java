@@ -89,7 +89,6 @@ public class SpeciesAdapter extends RecyclerView.Adapter<SpeciesAdapter.ViewHold
                 .into(holder.speciesImage);*/
         holder.speciesName.setText(species.getSpeciesName());
         holder.speciesStatus.setText(species.getSpeciesStatus());
-
     }
 
     @Override

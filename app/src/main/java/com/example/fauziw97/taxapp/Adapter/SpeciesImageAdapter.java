@@ -9,9 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.fauziw97.taxapp.MainActivity;
 import com.example.fauziw97.taxapp.Model.SpeciesImageModel;
 import com.example.fauziw97.taxapp.R;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +27,7 @@ import butterknife.ButterKnife;
  */
 
 public class SpeciesImageAdapter extends RecyclerView.Adapter<SpeciesImageAdapter.MyViewHolder> {
+    FirebaseStorage mStorage = FirebaseStorage.getInstance();
     List<SpeciesImageModel> horizontalList = Collections.emptyList();
     Context context;
 
@@ -37,7 +41,7 @@ public class SpeciesImageAdapter extends RecyclerView.Adapter<SpeciesImageAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.imageSpecies) ImageView imageSpecies;
-        @BindView(R.id.partSpecies) TextView partSpecies;
+
 
         public MyViewHolder(View view) {
             super(view);
@@ -57,15 +61,21 @@ public class SpeciesImageAdapter extends RecyclerView.Adapter<SpeciesImageAdapte
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
-        holder.imageSpecies.setImageResource(horizontalList.get(position).imageId);
-        holder.partSpecies.setText(horizontalList.get(position).txt);
+        SpeciesImageModel speciesImageList =horizontalList.get(position);
+        StorageReference mStorageRef = mStorage.getReferenceFromUrl("gs://taxapp-c61c1.appspot.com/FotoAmfirep/");
+        StorageReference overal = mStorageRef.child("Amydacartilaginea" + "D" + ".png");
+        Glide.with(context)
+                .using(new FirebaseImageLoader())
+                .load(overal)
+                .into(holder.imageSpecies);
+
 
         holder.imageSpecies.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
-                String list = horizontalList.get(position).txt.toString();
-                Toast.makeText(context, list, Toast.LENGTH_SHORT).show();
+                //String list = horizontalList.get(position).txt.toString();
+                //Toast.makeText(context, list, Toast.LENGTH_SHORT).show();
             }
 
         });

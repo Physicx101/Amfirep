@@ -7,13 +7,13 @@ package com.example.fauziw97.taxapp.Model;
 public class SpeciesImageModel {
 
 
-    public int imageId;
-    public String txt;
+    private String speciesImageId;
 
-    public SpeciesImageModel(int imageId, String text) {
-
-        this.imageId = imageId;
-        this.txt = text;
+    public String getSpeciesImageId() {
+        return speciesImageId;
     }
 
+    public void setSpeciesImageId(String speciesImageId) {
+        this.speciesImageId = speciesImageId;
+    }
 }

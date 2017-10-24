@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "751992996674-kdrjfk2l6jhpqk8tbce0cg11escou1uc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fauziw97.taxapp",
+            "certificate_hash": "aaec1e1e13d0fa97bdf13fe71f9b1dd2eda002ad"
+          }
+        },
+        {
           "client_id": "751992996674-n1do3pgehvcnl6hbo52h04j0ig7hmgor.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
