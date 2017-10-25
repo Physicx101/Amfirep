@@ -1,30 +1,18 @@
 package com.example.fauziw97.taxapp;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
-import com.example.fauziw97.taxapp.Adapter.FirebaseImageLoader;
-import com.example.fauziw97.taxapp.Model.SpeciesImageModel;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,16 +20,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.R.attr.data;
 
 /**
  * Created by Bogi on 25-Sep-17.
@@ -52,8 +35,14 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
     FirebaseStorage mStorage = FirebaseStorage.getInstance();
     StorageReference mStorageRef = mStorage.getReferenceFromUrl("gs://taxapp-c61c1.appspot.com/FotoAmfirep/");
+    StorageReference refDorsal, refLateral, refOveral;
+
+
     String name, speciesName;
     String circle = "\u25CF";
+    @BindView(R.id.test)
+    ImageView test;
+
     @BindView(R.id.speciesSlider)
     SliderLayout speciesSlider;
     @BindView(R.id.tvNama)
@@ -79,6 +68,9 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
     @BindView(R.id.tvIsiDistribute)
     TextView tvIsiDistribute;
 
+ HashMap<String, String> image_url = new HashMap<String, String>();
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +88,8 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
         }
 
 
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         /*if (getSupportActionBar() != null) {
@@ -107,20 +101,29 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
             }
         }*/
 
-        HashMap<String, String> image_url = new HashMap<String, String>();
-        image_url.put("Overall", "https://firebasestorage.googleapis.com/v0/b/taxapp-c61c1.appspot.com/o/FotoAmfirep%2FAhaetullaprasinaO.png?alt=media&token=4eee32a6-bdf3-4c5e-8742-fb383586df93");
-        image_url.put("Dorsal", mStorageRef.child("gs://taxapp-c61c1.appspot.com/FotoAmfirep/AmydacartilagineaD.png").getDownloadUrl().toString());
-        Toast.makeText(this, mStorageRef.child(speciesName) + "D" + ".png", Toast.LENGTH_LONG).show();
-        image_url.put("Lateral", (mStorageRef.child(speciesName + "L" + ".png").getDownloadUrl().toString()));
+        refDorsal = mStorageRef.child(speciesName + "D.png");
+        refOveral = mStorageRef.child(speciesName + "O.png");
+        refLateral = mStorageRef.child(speciesName + "L.png");
+
+        //getDownloadUrl();
+        Glide.with(getApplicationContext())
+                .using(new FirebaseImageLoader())
+                .load(refDorsal)
+                .into(test);
 
 
+        /*HashMap<String, String> image_url = new HashMap<String, String>();
+        image_url.put("Overal", refOveral.toString());
+        image_url.put("Dorsal", refDorsal.toString());
+        image_url.put("Lateral", refLateral.toString());*/
 
-        for(String species : image_url.keySet()) {
+
+        for (String species : image_url.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
             textSliderView
                     .description(species)
                     .image(image_url.get(species))
-                    .setScaleType(BaseSliderView.ScaleType.FitCenterCrop)
+                    .setScaleType(BaseSliderView.ScaleType.CenterCrop)
                     .setOnSliderClickListener(this);
 
             textSliderView.bundle(new Bundle());
@@ -130,6 +133,7 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
             speciesSlider.addSlider(textSliderView);
         }
 
+        speciesSlider.stopAutoCycle();
         speciesSlider.setPresetTransformer(SliderLayout.Transformer.Default);
         speciesSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         //speciesSlider.setCustomAnimation(new DescriptionAnimation());
@@ -138,6 +142,51 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
 
 
     }
+
+    /*private void getDownloadUrl() {
+
+
+
+        refOveral.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Uri uriOveral = uri;
+                image_url.put("Overal", uriOveral.toString());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        refDorsal.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Uri uriDorsal = uri;
+                image_url.put("Dorsal", uriDorsal.toString());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        refLateral.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Uri uriLateral = uri;
+                image_url.put("Lateral", uriLateral.toString());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }*/
+
 
     @Override
     protected void onStop() {
