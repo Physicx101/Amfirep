@@ -74,6 +74,32 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             @Override
             public void onSearchViewShown() {
                 searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
+
+                searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        Toast.makeText(getApplicationContext(), "Tekan di daftar hewan yang tersedia", Toast.LENGTH_SHORT);
+
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        return false;
+                    }
+                });
+
+                searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        String data = (String) parent.getItemAtPosition(position);
+                        Intent intent = new Intent(MainActivity.this, SpeciesDetails.class);
+                        intent.putExtra("speciesName", data);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override
@@ -83,32 +109,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         });
 
 
-        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getApplicationContext(), "Tekan di daftar hewan yang tersedia", Toast.LENGTH_SHORT);
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
 
 
-        searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                String data = (String) parent.getItemAtPosition(position);
-                Intent intent = new Intent(MainActivity.this, SpeciesDetails.class);
-                intent.putExtra("speciesName", data);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
+
 
 
     }

@@ -10,7 +10,8 @@ public class SpeciesModel {
     private String speciesName;
     private String speciesStatus;
 
-    public SpeciesModel(String speciesName, String speciesStatus) {
+    public SpeciesModel(String speciesImage, String speciesName, String speciesStatus) {
+        this.speciesImage = speciesImage;
         this.speciesName = speciesName;
         this.speciesStatus = speciesStatus;
     }

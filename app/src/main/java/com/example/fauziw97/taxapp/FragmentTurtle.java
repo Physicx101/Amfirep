@@ -74,9 +74,9 @@ public class FragmentTurtle extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     SpeciesModel listSpeciesModel = new SpeciesModel(
+                            snapshot.child("ImgOverall").getValue(String.class),
                             snapshot.child("NamaSpesies").getValue(String.class),
                             snapshot.child("StatusKonservasi").getValue(String.class));
-                    //snapshot.child("img").getValue(String.class));
 
 
                     mSpeciesModels.add(listSpeciesModel);

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.fauziw97.taxapp.Model.SpeciesModel;
 import com.example.fauziw97.taxapp.R;
 import com.example.fauziw97.taxapp.SpeciesDetails;
@@ -84,9 +85,9 @@ public class SpeciesAdapter extends RecyclerView.Adapter<SpeciesAdapter.ViewHold
     public void onBindViewHolder(SpeciesAdapter.ViewHolder holder, int position) {
         holder.root.setTag(speciesModels.get(position));
         SpeciesModel species = speciesModels.get(position);
-        /*Picasso.with(context)
+        Glide.with(context)
                 .load(species.getSpeciesImage())
-                .into(holder.speciesImage);*/
+                .into(holder.speciesImage);
         holder.speciesName.setText(species.getSpeciesName());
         holder.speciesStatus.setText(species.getSpeciesStatus());
     }
