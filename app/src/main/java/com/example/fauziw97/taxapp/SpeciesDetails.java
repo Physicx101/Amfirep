@@ -3,53 +3,73 @@ package com.example.fauziw97.taxapp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.fauziw97.taxapp.Adapter.SpeciesImageAdapter;
-import com.example.fauziw97.taxapp.Model.SpeciesImageModel;
+import com.bumptech.glide.Glide;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.R.attr.data;
 
 /**
  * Created by Bogi on 25-Sep-17.
  */
 
-public class SpeciesDetails extends AppCompatActivity {
+public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+    FirebaseStorage mStorage = FirebaseStorage.getInstance();
+    StorageReference mStorageRef = mStorage.getReferenceFromUrl("gs://taxapp-c61c1.appspot.com/FotoAmfirep/");
+    StorageReference refDorsal, refLateral, refOveral;
+
+
     String name, speciesName;
     String circle = "\u25CF";
-    private List<SpeciesImageModel> data;
-    private RecyclerView.Adapter mAdapter;
-    RecyclerView horizontal_recycler_view;
-    @BindView(R.id.tvNama) TextView tvNama;
-    @BindView(R.id.tvStatus) TextView tvStatus;
-    @BindView(R.id.tvKingdom) TextView tvKingdom;
-    @BindView(R.id.tvPhylum) TextView tvPhylum;
-    @BindView(R.id.tvClass) TextView tvClass;
-    @BindView(R.id.tvOrder) TextView tvOrder;
-    @BindView(R.id.tvFamily) TextView tvFamily;
-    @BindView(R.id.tvGenus) TextView tvGenus;
-    @BindView(R.id.tvIsiDeskripsi) TextView tvIsiDeskripsi;
-    @BindView(R.id.tvIsiHabitat) TextView tvIsiHabitat;
-    @BindView(R.id.tvIsiDistribute) TextView tvIsiDistribute;
+    @BindView(R.id.test)
+    ImageView test;
+
+    @BindView(R.id.speciesSlider)
+    SliderLayout speciesSlider;
+    @BindView(R.id.tvNama)
+    TextView tvNama;
+    @BindView(R.id.tvStatus)
+    TextView tvStatus;
+    @BindView(R.id.tvKingdom)
+    TextView tvKingdom;
+    @BindView(R.id.tvPhylum)
+    TextView tvPhylum;
+    @BindView(R.id.tvClass)
+    TextView tvClass;
+    @BindView(R.id.tvOrder)
+    TextView tvOrder;
+    @BindView(R.id.tvFamily)
+    TextView tvFamily;
+    @BindView(R.id.tvGenus)
+    TextView tvGenus;
+    @BindView(R.id.tvIsiDeskripsi)
+    TextView tvIsiDeskripsi;
+    @BindView(R.id.tvIsiHabitat)
+    TextView tvIsiHabitat;
+    @BindView(R.id.tvIsiDistribute)
+    TextView tvIsiDistribute;
+
+ HashMap<String, String> image_url = new HashMap<String, String>();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,17 +77,21 @@ public class SpeciesDetails extends AppCompatActivity {
         setContentView(R.layout.details_species);
         ButterKnife.bind(this);
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             name = extras.getString("speciesName");
-            speciesName = name.replaceAll("[^A-Za-z]+","");
+            speciesName = name.replaceAll("[^A-Za-z]+", "");
         }
 
 
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         /*if (getSupportActionBar() != null) {
             if (name != null) {
                 getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -77,39 +101,98 @@ public class SpeciesDetails extends AppCompatActivity {
             }
         }*/
 
+        refDorsal = mStorageRef.child(speciesName + "D.png");
+        refOveral = mStorageRef.child(speciesName + "O.png");
+        refLateral = mStorageRef.child(speciesName + "L.png");
+
+        //getDownloadUrl();
+        Glide.with(getApplicationContext())
+                .using(new FirebaseImageLoader())
+                .load(refDorsal)
+                .into(test);
 
 
-
-        horizontal_recycler_view = (RecyclerView) findViewById(R.id.horizontal_recycler_view);
-
-        data = fill_with_data();
-
-
-        mAdapter = new SpeciesImageAdapter(data, getApplicationContext());
-
-        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view.setLayoutManager(horizontalLayoutManager);
-        horizontal_recycler_view.setAdapter(mAdapter);
-    }
-
-        public List<SpeciesImageModel> fill_with_data() {
-
-            List<SpeciesImageModel> data = new ArrayList<>();
-
-            data.add(new SpeciesImageModel( R.drawable.komodo, "Image 1"));
-            data.add(new SpeciesImageModel( R.drawable.komodo, "Image 2"));
-            data.add(new SpeciesImageModel( R.drawable.komodo, "Image 3"));
-            data.add(new SpeciesImageModel( R.drawable.komodo, "Image 1"));
-            data.add(new SpeciesImageModel( R.drawable.komodo, "Image 2"));
-            data.add(new SpeciesImageModel( R.drawable.komodo, "Image 3"));
-            data.add(new SpeciesImageModel( R.drawable.komodo, "Image 1"));
+        /*HashMap<String, String> image_url = new HashMap<String, String>();
+        image_url.put("Overal", refOveral.toString());
+        image_url.put("Dorsal", refDorsal.toString());
+        image_url.put("Lateral", refLateral.toString());*/
 
 
-            return data;
+        for (String species : image_url.keySet()) {
+            TextSliderView textSliderView = new TextSliderView(this);
+            textSliderView
+                    .description(species)
+                    .image(image_url.get(species))
+                    .setScaleType(BaseSliderView.ScaleType.CenterCrop)
+                    .setOnSliderClickListener(this);
+
+            textSliderView.bundle(new Bundle());
+            textSliderView.getBundle()
+                    .putString("extra", species);
+
+            speciesSlider.addSlider(textSliderView);
         }
 
+        speciesSlider.stopAutoCycle();
+        speciesSlider.setPresetTransformer(SliderLayout.Transformer.Default);
+        speciesSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        //speciesSlider.setCustomAnimation(new DescriptionAnimation());
+        //speciesSlider.setDuration(4000);
+        speciesSlider.addOnPageChangeListener(this);
 
 
+    }
+
+    /*private void getDownloadUrl() {
+
+
+
+        refOveral.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Uri uriOveral = uri;
+                image_url.put("Overal", uriOveral.toString());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        refDorsal.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Uri uriDorsal = uri;
+                image_url.put("Dorsal", uriDorsal.toString());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        refLateral.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Uri uriLateral = uri;
+                image_url.put("Lateral", uriLateral.toString());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }*/
+
+
+    @Override
+    protected void onStop() {
+        speciesSlider.stopAutoCycle();
+        super.onStop();
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -143,5 +226,25 @@ public class SpeciesDetails extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             tools:src="@drawable/komodo"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:layout_above="@+id/linearLayout"
             android:layout_alignParentTop="true"/>
 

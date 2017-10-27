@@ -3,11 +3,9 @@ package com.example.fauziw97.taxapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -17,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.fauziw97.taxapp.Adapter.TabPagerAdapter;
-import com.example.fauziw97.taxapp.Model.SpeciesModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,21 +24,18 @@ import com.google.firebase.database.ValueEventListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
-    @BindView(R.id.search_view) MaterialSearchView searchView;
+public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+    @BindView(R.id.search_view)
+    MaterialSearchView searchView;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private FirebaseAuth mAuth;
     ArrayList<String> list = new ArrayList<String>();
     String[] listItems;
-
 
 
     @Override
@@ -73,48 +67,56 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         //Adding onTabSelectedListener to swipe views
         tabLayout.addOnTabSelectedListener(this);
+
 //        addSuggestion();
-
-        searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
-        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getApplicationContext(),"Tekan di daftar hewan yang tersedia",Toast.LENGTH_SHORT);
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
 
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-                //Do some magic
+                searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
+
+                searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        Toast.makeText(getApplicationContext(), "Tekan di daftar hewan yang tersedia", Toast.LENGTH_SHORT);
+
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        return false;
+                    }
+                });
+
+                searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        String data = (String) parent.getItemAtPosition(position);
+                        Intent intent = new Intent(MainActivity.this, SpeciesDetails.class);
+                        intent.putExtra("speciesName", data);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override
             public void onSearchViewClosed() {
-                //Do some magic
+
             }
         });
 
 
-        searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                String data = (String) parent.getItemAtPosition(position);
-                Intent intent = new Intent(MainActivity.this, SpeciesDetails.class);
-                intent.putExtra("speciesName", data);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-    });
+
+
+
+
+
     }
+
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
@@ -142,7 +144,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -151,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         searchView.setMenuItem(item);
         return true;
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -169,8 +171,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
 
-
-    public void addSuggestion(){
+    public void addSuggestion() {
         DatabaseReference mRootref = FirebaseDatabase.getInstance().getReference();
         DatabaseReference Suggest = mRootref.child("Amfirep");
         Suggest.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -186,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 listItems = list.toArray(new String[100]);
                 searchView.setSuggestions(listItems);
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
