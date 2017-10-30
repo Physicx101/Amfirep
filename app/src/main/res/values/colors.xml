@@ -9,4 +9,5 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
     <color name="unselected">#80FFFFFF</color>
+    <color name="background_light">#fafafa</color>
 </resources>

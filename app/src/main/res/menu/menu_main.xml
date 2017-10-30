@@ -17,7 +17,7 @@
 
     <item
         android:id="@+id/action_login"
-        android:title="Sign in Admin"
+        android:title="Login Admin"
         app:showAsAction="never"/>
 
     <item android:id="@+id/search"

@@ -1,6 +1,5 @@
 package com.example.fauziw97.taxapp;
 
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.example.fauziw97.taxapp.Adapter.SpeciesAdapter;
 import com.example.fauziw97.taxapp.Model.SpeciesModel;
+import com.example.fauziw97.taxapp.Util.Measure;
+import com.example.fauziw97.taxapp.View.GridSpacingItemDecoration;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,17 +34,23 @@ public class FragmentLizard extends Fragment {
 
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
     private RecyclerView.Adapter mAdapter;
-    private GridLayoutManager mGridLayoutManager;
     private List<SpeciesModel> mSpeciesModels;
+    private GridSpacingItemDecoration spacingDecoration;
 
-    @BindView(R.id.recycler_view_lizard) RecyclerView mRecyclerView;
+    @BindView(R.id.recycler_view_lizard)
+    RecyclerView mRecyclerView;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lizard, container, false);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
+
+        spacingDecoration = new GridSpacingItemDecoration(2, Measure.pxToDp(16, getContext()), true);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.addItemDecoration(spacingDecoration);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
 
         return view;
@@ -52,11 +59,6 @@ public class FragmentLizard extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.addItemDecoration(new FragmentLizard.GridSpacingItemDecoration(2, 30, true, 0));
-        mGridLayoutManager = new GridLayoutManager(getContext(), 2);
-        mRecyclerView.setLayoutManager(mGridLayoutManager);
 
 
         mSpeciesModels = new ArrayList<>();
@@ -72,12 +74,11 @@ public class FragmentLizard extends Fragment {
         lizardList.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     SpeciesModel listSpeciesModel = new SpeciesModel(
                             snapshot.child("ImgOverall").getValue(String.class),
                             snapshot.child("NamaSpesies").getValue(String.class),
                             snapshot.child("StatusKonservasi").getValue(String.class));
-
 
 
                     mSpeciesModels.add(listSpeciesModel);
@@ -95,49 +96,4 @@ public class FragmentLizard extends Fragment {
     }
 
 
-
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
-
-        private int spanCount;
-        private int spacing;
-        private boolean includeEdge;
-        private int headerNum;
-
-        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge, int headerNum) {
-            this.spanCount = spanCount;
-            this.spacing = spacing;
-            this.includeEdge = includeEdge;
-            this.headerNum = headerNum;
-        }
-
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            int position = parent.getChildAdapterPosition(view) - headerNum; // item position
-
-            if (position >= 0) {
-                int column = position % spanCount; // item column
-
-                if (includeEdge) {
-                    outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
-                    outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
-
-                    if (position < spanCount) { // top edge
-                        outRect.top = spacing;
-                    }
-                    outRect.bottom = spacing; // item bottom
-                } else {
-                    outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
-                    outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
-                    if (position >= spanCount) {
-                        outRect.top = spacing; // item top
-                    }
-                }
-            } else {
-                outRect.left = 0;
-                outRect.right = 0;
-                outRect.top = 0;
-                outRect.bottom = 0;
-            }
-        }
-    }
 }

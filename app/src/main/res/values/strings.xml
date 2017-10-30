@@ -53,7 +53,7 @@
         <item>Xpiscator</item>
         <item>Xtrianguligerus</item>
     </string-array>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Login Admin</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
