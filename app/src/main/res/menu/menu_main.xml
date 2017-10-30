@@ -15,6 +15,11 @@
         android:title="Tentang"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/action_login"
+        android:title="Sign in Admin"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/search"
           android:title="@string/search_hint"
           android:icon="@drawable/ic_magnify"

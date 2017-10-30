@@ -69,17 +69,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Sign in admin"
+                android:text="Sign in"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/email_sign_in"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Masuk sebagai member"
-                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

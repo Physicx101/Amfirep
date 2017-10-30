@@ -26,14 +26,12 @@ public class SplashActivity extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String Authen = sharedpreferences.getString(Auth,null);
         if (Authen != null){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
+            MainActivity.role = "admin";
+
         }
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
 
     }
 }

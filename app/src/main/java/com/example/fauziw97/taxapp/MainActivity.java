@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private FirebaseAuth mAuth;
     ArrayList<String> list = new ArrayList<String>();
     String[] listItems;
+    public static String role = "member";
 
 
     @Override
@@ -192,5 +193,18 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_login) {
+            Intent intent1 = new Intent(this,LoginActivity.class);
+            this.startActivity(intent1);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
