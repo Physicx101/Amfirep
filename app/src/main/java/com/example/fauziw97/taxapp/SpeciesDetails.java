@@ -1,12 +1,15 @@
 package com.example.fauziw97.taxapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -40,13 +44,12 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
     FirebaseStorage mStorage = FirebaseStorage.getInstance();
     StorageReference mStorageRef = mStorage.getReferenceFromUrl("gs://taxapp-c61c1.appspot.com/FotoAmfirep/");
-    StorageReference refDorsal, refLateral, refOveral,refVentral;
+    StorageReference refDorsal, refLateral, refOveral, refVentral;
 
 
     String name, speciesName;
     String circle = "\u25CF";
-    @BindView(R.id.test)
-    ImageView test;
+
 
     @BindView(R.id.speciesSlider)
     SliderLayout speciesSlider;
@@ -73,7 +76,8 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
     @BindView(R.id.tvIsiDistribute)
     TextView tvIsiDistribute;
 
- HashMap<String, String> image_url = new HashMap<String, String>();
+    HashMap<String, String> image_url = new HashMap<String, String>();
+    int position;
 
 
     @Override
@@ -93,8 +97,6 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
         }
 
 
-
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         /*if (getSupportActionBar() != null) {
@@ -112,10 +114,7 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
         refVentral = mStorageRef.child(speciesName + "V.png");
 
         getDownloadUrl();
-        Glide.with(getApplicationContext())
-                .using(new FirebaseImageLoader())
-                .load(refOveral)
-                .into(test);
+
 
 
         /*HashMap<String, String> image_url = new HashMap<String, String>();
@@ -142,7 +141,6 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
 
             speciesSlider.addSlider(textSliderView);
         }
-
         speciesSlider.stopAutoCycle();
         speciesSlider.setPresetTransformer(SliderLayout.Transformer.Default);
         speciesSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
@@ -155,8 +153,8 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
         refVentral.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Uri uriDorsal = uri;
-                image_url.put("Ventral", uriDorsal.toString());
+                Uri uriVentral = uri;
+                image_url.put("Ventral", uriVentral.toString());
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -207,7 +205,6 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
     }
 
 
-
     @Override
     protected void onStop() {
         speciesSlider.stopAutoCycle();
@@ -250,7 +247,13 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
-
+        /*slider.getView().buildDrawingCache();
+        Bitmap bitmap = slider.getView().getDrawingCache();
+        Bundle extras = new Bundle();
+        Intent intent = new Intent(getApplicationContext(), ImageFullscreen.class);
+        extras.putParcelable("BitmapImage", bitmap);
+        intent.putExtras(extras);
+        startActivity(intent);*/
     }
 
     @Override

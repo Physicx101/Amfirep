@@ -34,6 +34,7 @@
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"
             android:label="@string/title_activity_login"></activity>
+        <activity android:name=".ImageFullscreen"></activity>
     </application>
 
 </manifest>

@@ -8,11 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.fauziw97.taxapp.Adapter.SpeciesAdapter;
 import com.example.fauziw97.taxapp.Model.SpeciesModel;
 import com.example.fauziw97.taxapp.Util.Measure;
 import com.example.fauziw97.taxapp.View.GridSpacingItemDecoration;
+import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +41,8 @@ public class FragmentLizard extends Fragment {
 
     @BindView(R.id.recycler_view_lizard)
     RecyclerView mRecyclerView;
+    @BindView(R.id.progress_bar)
+    ProgressBar mProgressBar;
 
 
     @Nullable
@@ -69,6 +73,7 @@ public class FragmentLizard extends Fragment {
 
     private void retrieveData() {
 
+        mProgressBar.setVisibility(View.VISIBLE);
         DatabaseReference lizardData = mRef.child("Amfirep");
         Query lizardList = lizardData.orderByChild("Jenis").equalTo("Lizard");
         lizardList.addValueEventListener(new ValueEventListener() {
@@ -86,6 +91,7 @@ public class FragmentLizard extends Fragment {
                     mAdapter = new SpeciesAdapter(mSpeciesModels, getActivity());
                     mRecyclerView.setAdapter(mAdapter);
                 }
+                mProgressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override

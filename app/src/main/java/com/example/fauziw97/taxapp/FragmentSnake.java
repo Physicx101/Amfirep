@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.fauziw97.taxapp.Adapter.SpeciesAdapter;
 import com.example.fauziw97.taxapp.Model.SpeciesModel;
@@ -39,6 +40,8 @@ public class FragmentSnake extends Fragment {
 
     @BindView(R.id.recycler_view_snake)
     RecyclerView mRecyclerView;
+    @BindView(R.id.progress_bar)
+    ProgressBar mProgressBar;
 
 
     @Nullable
@@ -69,6 +72,7 @@ public class FragmentSnake extends Fragment {
 
     private void retrieveData() {
 
+        mProgressBar.setVisibility(View.VISIBLE);
         DatabaseReference snakeData = mRef.child("Amfirep");
         Query snakeList = snakeData.orderByChild("Jenis").equalTo("Snake");
         snakeList.addValueEventListener(new ValueEventListener() {
@@ -86,6 +90,7 @@ public class FragmentSnake extends Fragment {
                     mAdapter = new SpeciesAdapter(mSpeciesModels, getActivity());
                     mRecyclerView.setAdapter(mAdapter);
                 }
+                mProgressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override

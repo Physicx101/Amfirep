@@ -41,6 +41,8 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.slider:library:1.1.5@aar'
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
+    compile 'com.github.chrisbanes:PhotoView:2.0.0'
+    compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }
