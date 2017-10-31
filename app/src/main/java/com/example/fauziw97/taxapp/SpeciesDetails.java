@@ -1,6 +1,9 @@
 package com.example.fauziw97.taxapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +16,8 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +40,7 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
     FirebaseStorage mStorage = FirebaseStorage.getInstance();
     StorageReference mStorageRef = mStorage.getReferenceFromUrl("gs://taxapp-c61c1.appspot.com/FotoAmfirep/");
-    StorageReference refDorsal, refLateral, refOveral;
+    StorageReference refDorsal, refLateral, refOveral,refVentral;
 
 
     String name, speciesName;
@@ -104,11 +109,12 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
         refDorsal = mStorageRef.child(speciesName + "D.png");
         refOveral = mStorageRef.child(speciesName + "O.png");
         refLateral = mStorageRef.child(speciesName + "L.png");
+        refVentral = mStorageRef.child(speciesName + "V.png");
 
-        //getDownloadUrl();
+        getDownloadUrl();
         Glide.with(getApplicationContext())
                 .using(new FirebaseImageLoader())
-                .load(refDorsal)
+                .load(refOveral)
                 .into(test);
 
 
@@ -117,6 +123,10 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
         image_url.put("Dorsal", refDorsal.toString());
         image_url.put("Lateral", refLateral.toString());*/
 
+
+    }
+
+    public void slider() {
 
         for (String species : image_url.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
@@ -139,19 +149,14 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
         //speciesSlider.setCustomAnimation(new DescriptionAnimation());
         //speciesSlider.setDuration(4000);
         speciesSlider.addOnPageChangeListener(this);
-
-
     }
 
-    /*private void getDownloadUrl() {
-
-
-
-        refOveral.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+    private void getDownloadUrl() {
+        refVentral.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Uri uriOveral = uri;
-                image_url.put("Overal", uriOveral.toString());
+                Uri uriDorsal = uri;
+                image_url.put("Ventral", uriDorsal.toString());
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -178,6 +183,7 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
             public void onSuccess(Uri uri) {
                 Uri uriLateral = uri;
                 image_url.put("Lateral", uriLateral.toString());
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -185,7 +191,21 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
                 e.printStackTrace();
             }
         });
-    }*/
+        refOveral.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Uri uriOveral = uri;
+                image_url.put("Overal", uriOveral.toString());
+                slider();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
 
 
     @Override
