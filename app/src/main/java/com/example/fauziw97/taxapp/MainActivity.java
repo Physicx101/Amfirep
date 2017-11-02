@@ -110,12 +110,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         });
 
 
-
-
-
-
-
-
     }
 
 
@@ -200,8 +194,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         int id = item.getItemId();
 
         if (id == R.id.action_login) {
-            Intent intent1 = new Intent(this,LoginActivity.class);
-            this.startActivity(intent1);
+            Intent intent = new Intent(this, LoginActivity.class);
+            this.startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.action_about) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            this.startActivity(intent);
             return true;
         }
 

@@ -15,11 +15,8 @@ import com.example.fauziw97.taxapp.Model.SpeciesModel;
 import com.example.fauziw97.taxapp.R;
 import com.example.fauziw97.taxapp.SpeciesDetails;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -34,7 +31,7 @@ public class SpeciesAdapter extends RecyclerView.Adapter<SpeciesAdapter.ViewHold
     private FirebaseAuth firebaseAuth;
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
     SpeciesModel species;
-    String name,speciesName,imgSignature;
+    String name, speciesName, imgSignature;
     private List<SpeciesModel> speciesModels;
     private Context context;
 
@@ -90,10 +87,10 @@ public class SpeciesAdapter extends RecyclerView.Adapter<SpeciesAdapter.ViewHold
     public void onBindViewHolder(final SpeciesAdapter.ViewHolder holder, int position) {
         holder.root.setTag(speciesModels.get(position));
         species = speciesModels.get(position);
-         Glide.with(context)
-                        .load(species.getSpeciesImage())
-                        .signature(new StringSignature(species.getSpeciesImage()))
-                        .into(holder.speciesImage);
+        Glide.with(context)
+                .load(species.getSpeciesImage())
+                .signature(new StringSignature(species.getSpeciesImage()))
+                .into(holder.speciesImage);
 
 
         holder.speciesName.setText(species.getSpeciesName());

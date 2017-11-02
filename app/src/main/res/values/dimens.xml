@@ -40,4 +40,7 @@
     <dimen name="z_fab_over_touchable_app_bar">9dp</dimen>
     <dimen name="z_drawer">16dp</dimen>
     <dimen name="z_dialog">24dp</dimen>
+    <dimen name="sub_big_text">18sp</dimen>
+    <dimen name="medium_text">14sp</dimen>
+    <dimen name="sub_big_spacing">8dp</dimen>
 </resources>

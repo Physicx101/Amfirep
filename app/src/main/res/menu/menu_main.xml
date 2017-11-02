@@ -9,12 +9,12 @@
         android:title="Login Admin"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/action_refresh"
+        android:id="@+id/action_guide"
         android:title="Panduan"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/action_feedback"
+        android:id="@+id/action_about"
         android:title="Tentang"
         app:showAsAction="never"/>
 
