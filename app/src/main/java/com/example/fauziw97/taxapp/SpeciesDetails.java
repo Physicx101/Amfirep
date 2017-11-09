@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.daimajia.slider.library.SliderLayout;
@@ -49,6 +50,7 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
 
     String name, speciesName;
     String circle = "\u25CF";
+    int i = 0;
 
 
     @BindView(R.id.speciesSlider)
@@ -150,16 +152,26 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
     }
 
     private void getDownloadUrl() {
+        i = 0;
         refVentral.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Uri uriVentral = uri;
+                i++;
                 image_url.put("Ventral", uriVentral.toString());
+
+                if (i==4){
+                    slider();
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 e.printStackTrace();
+                i++;
+                if (i==4){
+                    slider();
+                }
             }
         });
 
@@ -167,12 +179,20 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
             @Override
             public void onSuccess(Uri uri) {
                 Uri uriDorsal = uri;
+                i++;
                 image_url.put("Dorsal", uriDorsal.toString());
+                if (i==4){
+                    slider();
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                i++;
                 e.printStackTrace();
+                if (i==4){
+                    slider();
+                }
             }
         });
 
@@ -180,26 +200,40 @@ public class SpeciesDetails extends AppCompatActivity implements BaseSliderView.
             @Override
             public void onSuccess(Uri uri) {
                 Uri uriLateral = uri;
+                i++;
                 image_url.put("Lateral", uriLateral.toString());
-
+                if (i==4){
+                    slider();
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                i++;
                 e.printStackTrace();
+                if (i==4){
+                    slider();
+                }
             }
         });
         refOveral.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Uri uriOveral = uri;
+                i++;
                 image_url.put("Overal", uriOveral.toString());
-                slider();
+                if (i==4){
+                    slider();
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                i++;
                 e.printStackTrace();
+                if (i==4){
+                    slider();
+                }
             }
         });
     }

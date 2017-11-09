@@ -1,5 +1,6 @@
 package com.example.fauziw97.taxapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Fauziw97 on 9/12/17.
@@ -98,6 +100,12 @@ public class FragmentTurtle extends Fragment {
 
             }
         });
+    }
+    @OnClick(R.id.fabSpecies)
+    public void addTurtle(View view) {
+        addSpecies.JenisHewan = "Turtle";
+        startActivity(new Intent(getActivity(), addSpecies.class));
+
     }
 
 

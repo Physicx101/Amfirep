@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_form_tambah_konsultasi"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/label_title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Spesies"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ETspesies"
+            android:background="@drawable/border_add_post"
+            android:layout_width="match_parent"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:maxLength="70"/>
+
+        <TextView
+            android:id="@+id/label_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kingdom"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ETKingdom"
+            android:background="@drawable/border_add_post"
+            android:layout_width="match_parent"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:maxLength="70"/>
+
+        <TextView
+            android:id="@+id/label_title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phyllum"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ETPhyllum"
+            android:background="@drawable/border_add_post"
+            android:layout_width="match_parent"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:maxLength="70"/>
+
+        <TextView
+            android:id="@+id/label_title5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Classis"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ETClassis"
+            android:background="@drawable/border_add_post"
+            android:layout_width="match_parent"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:maxLength="70"/>
+
+        <TextView
+            android:id="@+id/label_titl4e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ordo"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ETOrdo"
+            android:background="@drawable/border_add_post"
+            android:layout_width="match_parent"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:maxLength="70"/>
+
+        <TextView
+            android:id="@+id/label_title6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Familia"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ETFamilia"
+            android:background="@drawable/border_add_post"
+            android:layout_width="match_parent"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:maxLength="70"/>
+
+        <TextView
+            android:id="@+id/label_title7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Genus"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ETGenus"
+            android:background="@drawable/border_add_post"
+            android:layout_width="match_parent"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:maxLength="70"/>
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center">
+\
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabnext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="right"
+                android:backgroundTint="@color/colorPrimary"
+                android:onClick="fabNext"
+                android:src="@drawable/ic_send_black_24dp"
+                app:borderWidth="0dp"
+                app:fabSize="normal" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
