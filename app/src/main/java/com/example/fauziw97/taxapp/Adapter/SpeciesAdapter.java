@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.StringSignature;
 import com.example.fauziw97.taxapp.Model.SpeciesModel;
 import com.example.fauziw97.taxapp.R;
-import com.example.fauziw97.taxapp.SpeciesDetails;
+import com.example.fauziw97.taxapp.SpeciesDetailsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -62,7 +62,7 @@ public class SpeciesAdapter extends RecyclerView.Adapter<SpeciesAdapter.ViewHold
         @Override
         public void onClick(View view) {
             SpeciesModel species = (SpeciesModel) view.getTag();
-            Intent intent = new Intent(context, SpeciesDetails.class);
+            Intent intent = new Intent(context, SpeciesDetailsActivity.class);
             intent.putExtra("speciesName", species.getSpeciesName());
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);

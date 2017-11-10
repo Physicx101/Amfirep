@@ -3,6 +3,7 @@ package com.example.fauziw97.taxapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +16,6 @@ import com.example.fauziw97.taxapp.Adapter.SpeciesAdapter;
 import com.example.fauziw97.taxapp.Model.SpeciesModel;
 import com.example.fauziw97.taxapp.Util.Measure;
 import com.example.fauziw97.taxapp.View.GridSpacingItemDecoration;
-import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,6 +45,8 @@ public class FragmentLizard extends Fragment {
     RecyclerView mRecyclerView;
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
+    @BindView(R.id.fabSpecies)
+    FloatingActionButton fab;
 
 
     @Nullable
@@ -104,8 +106,8 @@ public class FragmentLizard extends Fragment {
     }
     @OnClick(R.id.fabSpecies)
     public void addLizard(View view) {
-        addSpecies.JenisHewan = "Lizard";
-        startActivity(new Intent(getActivity(), addSpecies.class));
+        AddSpeciesActivity.JenisHewan = "Lizard";
+        startActivity(new Intent(getActivity(), AddSpeciesActivity.class));
 
     }
 

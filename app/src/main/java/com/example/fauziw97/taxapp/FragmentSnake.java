@@ -3,6 +3,7 @@ package com.example.fauziw97.taxapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,6 +45,8 @@ public class FragmentSnake extends Fragment {
     RecyclerView mRecyclerView;
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
+    @BindView(R.id.fabSpecies)
+    FloatingActionButton fab;
 
 
     @Nullable
@@ -103,8 +106,8 @@ public class FragmentSnake extends Fragment {
     }
     @OnClick(R.id.fabSpecies)
     public void addSnake(View view) {
-        addSpecies.JenisHewan = "Snake";
-        startActivity(new Intent(getActivity(), addSpecies.class));
+        AddSpeciesActivity.JenisHewan = "Snake";
+        startActivity(new Intent(getActivity(), AddSpeciesActivity.class));
 
     }
 

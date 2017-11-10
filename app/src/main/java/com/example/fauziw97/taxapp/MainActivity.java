@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                         String data = (String) parent.getItemAtPosition(position);
-                        Intent intent = new Intent(MainActivity.this, SpeciesDetails.class);
+                        Intent intent = new Intent(MainActivity.this, SpeciesDetailsActivity.class);
                         intent.putExtra("speciesName", data);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);

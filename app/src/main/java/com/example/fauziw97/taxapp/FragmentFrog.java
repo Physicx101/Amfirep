@@ -1,7 +1,6 @@
 package com.example.fauziw97.taxapp;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -12,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.fauziw97.taxapp.Adapter.SpeciesAdapter;
 import com.example.fauziw97.taxapp.Model.SpeciesModel;
@@ -42,11 +40,11 @@ public class FragmentFrog extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private List<SpeciesModel> mSpeciesModels;
     GridSpacingItemDecoration spacingDecoration;
-    private FloatingActionButton fab;
     @BindView(R.id.recycler_view_frog)
     RecyclerView mRecyclerView;
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
+    @BindView(R.id.fabSpecies) FloatingActionButton fab;
 
 
     @Nullable
@@ -60,7 +58,7 @@ public class FragmentFrog extends Fragment {
         mRecyclerView.addItemDecoration(spacingDecoration);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-        fab = (FloatingActionButton) view.findViewById(R.id.fabSpecies);
+
 
         return view;
     }
@@ -68,8 +66,8 @@ public class FragmentFrog extends Fragment {
 
     @OnClick(R.id.fabSpecies)
     public void addFrog(View view) {
-        addSpecies.JenisHewan = "Amphibi";
-        startActivity(new Intent(getActivity(), addSpecies.class));
+        AddSpeciesActivity.JenisHewan = "Amphibi";
+        startActivity(new Intent(getActivity(), AddSpeciesActivity.class));
 
     }
 
