@@ -23,6 +23,7 @@
             <com.daimajia.slider.library.SliderLayout
                 android:id="@+id/speciesSlider"
                 android:layout_width="match_parent"
+                android:fitsSystemWindows="true"
                 android:layout_height="match_parent"/>
 
 

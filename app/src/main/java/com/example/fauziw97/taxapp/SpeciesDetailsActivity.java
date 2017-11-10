@@ -1,11 +1,17 @@
 package com.example.fauziw97.taxapp;
 
+import android.app.Activity;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.daimajia.slider.library.SliderLayout;
@@ -69,6 +75,8 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
     TextView tvIsiHabitat;
     @BindView(R.id.tvIsiDistribute)
     TextView tvIsiDistribute;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     HashMap<String, String> image_url = new HashMap<String, String>();
     int position;
@@ -77,11 +85,23 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details_species);
+        setContentView(R.layout.activity_species_details);
         ButterKnife.bind(this);
 
+        //make full transparent statusBar
+        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
+            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
+        }
+        if (Build.VERSION.SDK_INT >= 19) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
+        if (Build.VERSION.SDK_INT >= 21) {
+            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
         setSupportActionBar(toolbar);
 
         Bundle extras = getIntent().getExtras();
@@ -119,6 +139,17 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
 
     }
 
+    public static void setWindowFlag(Activity activity, final int bits, boolean on) {
+        Window win = activity.getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
+    }
+
     public void slider() {
 
         for (String species : image_url.keySet()) {
@@ -152,7 +183,7 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
                 i++;
                 image_url.put("Ventral", uriVentral.toString());
 
-                if (i==4){
+                if (i == 4) {
                     slider();
                 }
             }
@@ -161,7 +192,7 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
             public void onFailure(@NonNull Exception e) {
                 e.printStackTrace();
                 i++;
-                if (i==4){
+                if (i == 4) {
                     slider();
                 }
             }
@@ -173,7 +204,7 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
                 Uri uriDorsal = uri;
                 i++;
                 image_url.put("Dorsal", uriDorsal.toString());
-                if (i==4){
+                if (i == 4) {
                     slider();
                 }
             }
@@ -182,7 +213,7 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
             public void onFailure(@NonNull Exception e) {
                 i++;
                 e.printStackTrace();
-                if (i==4){
+                if (i == 4) {
                     slider();
                 }
             }
@@ -194,7 +225,7 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
                 Uri uriLateral = uri;
                 i++;
                 image_url.put("Lateral", uriLateral.toString());
-                if (i==4){
+                if (i == 4) {
                     slider();
                 }
             }
@@ -203,7 +234,7 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
             public void onFailure(@NonNull Exception e) {
                 i++;
                 e.printStackTrace();
-                if (i==4){
+                if (i == 4) {
                     slider();
                 }
             }
@@ -214,7 +245,7 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
                 Uri uriOveral = uri;
                 i++;
                 image_url.put("Overal", uriOveral.toString());
-                if (i==4){
+                if (i == 4) {
                     slider();
                 }
             }
@@ -223,7 +254,7 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
             public void onFailure(@NonNull Exception e) {
                 i++;
                 e.printStackTrace();
-                if (i==4){
+                if (i == 4) {
                     slider();
                 }
             }
