@@ -52,8 +52,7 @@
                             android:padding="16dp"
                             android:layout_marginTop="8dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/ic_frog_leg"
-                            android:tint="@color/colorPrimary"/>
+                            android:src="@drawable/app_logo"/>
                     </RelativeLayout>
 
                     <TextView
