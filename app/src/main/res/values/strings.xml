@@ -2,57 +2,7 @@
     <string name="app_name">TAXApp</string>
     <string name="search_hint">Cari Species...</string>
     <string name="lorem_ipsum">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</string>
-    <string-array name="query_suggestions">
-        <item>Ahaetullaprasina</item>
-        <item>Amydacartilaginea</item>
-        <item>Bronchocellajubata</item>
-        <item>Bungarusfasciatus</item>
-        <item>Calliophisbivirgatus</item>
-        <item>Calloselasmarhodostoma</item>
-        <item>Chalcoranachalconota</item>
-        <item>Cheloniamydas</item>
-        <item>Chelydraserpentina</item>
-        <item>Coelognathusflavolineatus</item>
-        <item>Coelognathusradiatus</item>
-        <item>Cyrtodactylusmarmoratus</item>
-        <item>Dendrelaphispictus</item>
-        <item>Dracovolans</item>
-        <item>Duttaphrynusmelanostictus</item>
-        <item>Eutropismultifasciata</item>
-        <item>Fejervaryalimnocharis</item>
-        <item>Gonocephaluschamaeleontinus</item>
-        <item>Gonocephaluskuhlii</item>
-        <item>Hemidactylusfrenatus</item>
-        <item>Hemidactylusplatyurus</item>
-        <item>Homalopsisbuccata</item>
-        <item>Huiamasonii</item>
-        <item>Hylaranaerythrea</item>
-        <item>Ingerophrynusbiporcatus</item>
-        <item>Kalaolabaleata</item>
-        <item>Laticaudacolubrina</item>
-        <item>Lepidochelysolivacea</item>
-        <item>Leptobrachiumhaseltii</item>
-        <item>Limnonecteskuhlii</item>
-        <item>Malayopythonreticulatus</item>
-        <item>Megophrysmontana</item>
-        <item>Microhylaachatina</item>
-        <item>Najasputatrix</item>
-        <item>Odorranahosii</item>
-        <item>Pareascarinatus</item>
-        <item>Phyrenoidisaspera</item>
-        <item>Polypedatesleucomystax</item>
-        <item>Pseudocalothestymphanistriga</item>
-        <item>Ptyaskorros</item>
-        <item>Ptyasmucosus</item>
-        <item>Ptycozoonkuhlii</item>
-        <item>Rhabdophissubminiatus</item>
-        <item>Rhacophorusmargaritifer</item>
-        <item>Rhacophorusreinwardtii</item>
-        <item>Trachemysscriptaelegans</item>
-        <item>Trimeresurusalbolabris</item>
-        <item>Xpiscator</item>
-        <item>Xtrianguligerus</item>
-    </string-array>
+
     <string name="title_activity_login">Login Admin</string>
 
     <!-- Strings related to login -->

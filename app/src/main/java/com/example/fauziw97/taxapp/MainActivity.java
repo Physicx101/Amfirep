@@ -69,12 +69,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         //Adding onTabSelectedListener to swipe views
         tabLayout.addOnTabSelectedListener(this);
 
-//        addSuggestion();
+        addSuggestion();
 
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-                searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
+                  searchView.setSuggestions(listItems);
 
                 searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
                     @Override
@@ -179,8 +179,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
 
                 }
-                listItems = list.toArray(new String[100]);
-                searchView.setSuggestions(listItems);
+                long jumlahArray = postSnapshot.getChildrenCount();
+                int countArray = (int) jumlahArray;
+                listItems = list.toArray(new String[countArray]);
+
             }
 
             @Override
