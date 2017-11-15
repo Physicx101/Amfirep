@@ -14,28 +14,26 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-
-    <activity
-        android:name=".SplashActivity"
-        android:theme="@style/SplashTheme">
+        <activity android:name=".SplashActivity" >
         <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
 
-            <category android:name="android.intent.category.LAUNCHER"/>
         </intent-filter>
-    </activity>
-    <activity android:name=".MainActivity"/>
-    <activity android:name=".SpeciesDetailsActivity"/>
-    <activity
-        android:name=".LoginActivity"
-        android:label="@string/title_activity_login"
-        android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"/>
-    <activity android:name=".AddSpeciesActivity"/>
-    <activity android:name=".AboutActivity"></activity>
+        </activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".SpeciesDetails"/>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"/>
+        <activity android:name=".AboutActivity">
+        </activity>
     </application>
+
 </manifest>
