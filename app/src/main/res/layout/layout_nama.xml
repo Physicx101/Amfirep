@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/primary_text"
-            android:textStyle="bold"
+            android:textStyle="italic"
             tools:text="Ahaetulla prasina"/>
 
         <TextView

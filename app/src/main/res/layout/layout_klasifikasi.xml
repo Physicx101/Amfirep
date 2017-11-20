@@ -100,6 +100,7 @@
             android:layout_toEndOf="@id/iconClassify"
             android:layout_toRightOf="@id/iconClassify"
             android:text="Genus: Varanus"
+            android:textStyle="italic"
             android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
 

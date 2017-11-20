@@ -1,6 +1,7 @@
 package com.example.fauziw97.taxapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -12,13 +13,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,6 +38,7 @@ import com.google.firebase.storage.StorageReference;
 
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -157,18 +163,18 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
     public void slider() {
 
         for (String species : image_url.keySet()) {
-            TextSliderView textSliderView = new TextSliderView(this);
-            textSliderView
+            DefaultSliderView defaultSliderView = new DefaultSliderView(this);
+            defaultSliderView
                     .description(species)
                     .image(image_url.get(species))
                     .setScaleType(BaseSliderView.ScaleType.CenterCrop)
                     .setOnSliderClickListener(this);
 
-            textSliderView.bundle(new Bundle());
-            textSliderView.getBundle()
+            defaultSliderView.bundle(new Bundle());
+            defaultSliderView.getBundle()
                     .putString("extra", species);
 
-            speciesSlider.addSlider(textSliderView);
+            speciesSlider.addSlider(defaultSliderView);
         }
         speciesSlider.stopAutoCycle();
         speciesSlider.setPresetTransformer(SliderLayout.Transformer.Default);
@@ -313,7 +319,10 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
         String url = slider.getUrl();
         intent.putExtra("UrlImage",url);
         startActivity(intent);
+
     }
+
+
 
 
     @Override
