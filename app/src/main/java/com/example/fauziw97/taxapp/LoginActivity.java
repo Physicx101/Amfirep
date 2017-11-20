@@ -18,6 +18,8 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.fauziw97.taxapp.MainActivity.role;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -95,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(Auth, "Admin");
             editor.commit();
+            role = "Admin";
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
         } else if (emailAdmin.equalsIgnoreCase("admin@amfirep.com")) {

@@ -1,6 +1,9 @@
 package com.example.fauziw97.taxapp;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -29,6 +32,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -304,14 +308,13 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
-        /*slider.getView().buildDrawingCache();
-        Bitmap bitmap = slider.getView().getDrawingCache();
-        Bundle extras = new Bundle();
-        Intent intent = new Intent(getApplicationContext(), ImageFullscreen.class);
-        extras.putParcelable("BitmapImage", bitmap);
-        intent.putExtras(extras);
-        startActivity(intent);*/
+
+        Intent intent = new Intent(getApplicationContext(), ImageFullscreenActivity.class);
+        String url = slider.getUrl();
+        intent.putExtra("UrlImage",url);
+        startActivity(intent);
     }
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

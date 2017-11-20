@@ -30,6 +30,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.example.fauziw97.taxapp.MainActivity.role;
+
 /**
  * Created by Fauziw97 on 9/12/17.
  */
@@ -59,6 +61,7 @@ public class FragmentSnake extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(spacingDecoration);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        if (!role.equals("Admin")) fab.setVisibility(View.GONE);
 
 
         return view;
