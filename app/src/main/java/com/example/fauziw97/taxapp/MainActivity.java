@@ -3,6 +3,7 @@ package com.example.fauziw97.taxapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -196,8 +197,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         int id = item.getItemId();
 
         if (id == R.id.action_login) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            this.startActivity(intent);
+            if (role.equals("Admin")) {
+                Snackbar.make(tabLayout, "Anda telah login", Snackbar.LENGTH_LONG).show();
+            } else {
+                Intent intent = new Intent(this, LoginActivity.class);
+                this.startActivity(intent);
+            }
             return true;
         }
 

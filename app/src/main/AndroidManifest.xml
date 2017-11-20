@@ -31,6 +31,8 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".AddSpeciesActivity"/>
         <activity android:name=".SpeciesDetailsActivity"/>
+        <activity android:name=".ImageFullscreenActivity"/>
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
