@@ -117,7 +117,7 @@ public class ImageFullscreenActivity extends AppCompatActivity implements View.O
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(src);
 
-        File rootPath = new File(Environment.getExternalStorageDirectory(), "TaxAppImage");
+        File rootPath = new File(getFilesDir().getAbsolutePath(), "TaxAppImage");
         if(!rootPath.exists()) {
             rootPath.mkdirs();
         }
@@ -128,7 +128,7 @@ public class ImageFullscreenActivity extends AppCompatActivity implements View.O
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 Log.e("firebase ",";local tem file created  created " +localFile.toString());
-                File imgFile = new  File("/sdcard/TaxAppImage/Image-HistoryFullScreen.png");
+                File imgFile = new  File(getFilesDir().getAbsolutePath()+"/TaxAppImage/Image-HistoryFullScreen.png");
 
                 if(imgFile.exists()){
 
@@ -146,7 +146,7 @@ public class ImageFullscreenActivity extends AppCompatActivity implements View.O
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.e("firebase ",";local tem file not created  created " +exception.toString());
-                File imgFile = new  File("/sdcard/TaxAppImage/Image-HistoryFullScreen.png");
+                File imgFile = new  File(getFilesDir().getAbsolutePath()+"/TaxAppImage/Image-HistoryFullScreen.png");
 
                 if(imgFile.exists()){
 
