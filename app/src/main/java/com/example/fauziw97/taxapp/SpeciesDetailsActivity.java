@@ -1,10 +1,7 @@
 package com.example.fauziw97.taxapp;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -13,18 +10,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,9 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -121,16 +111,8 @@ public class SpeciesDetailsActivity extends AppCompatActivity implements BaseSli
         }
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        /*if (getSupportActionBar() != null) {
-            if (name != null) {
-                getSupportActionBar().setDisplayShowTitleEnabled(true);
-                getSupportActionBar().setTitle(name);
-            } else {
-                getSupportActionBar().setDisplayShowTitleEnabled(false);
-            }
-        }*/
+
 
         refDorsal = mStorageRef.child(speciesName + "D.png");
         refOveral = mStorageRef.child(speciesName + "O.png");

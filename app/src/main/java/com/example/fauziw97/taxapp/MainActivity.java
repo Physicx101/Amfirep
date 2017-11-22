@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
         //Adding the tabs using addTab() method
-        tabLayout.addTab(tabLayout.newTab().setText("LIZARD").setIcon(R.drawable.selector_lizard));
-        tabLayout.addTab(tabLayout.newTab().setText("FROG").setIcon(R.drawable.selector_frog));
-        tabLayout.addTab(tabLayout.newTab().setText("SNAKE").setIcon(R.drawable.selector_snake));
-        tabLayout.addTab(tabLayout.newTab().setText("TURTLE").setIcon(R.drawable.selector_turtle));
+        tabLayout.addTab(tabLayout.newTab().setText("Lizard").setIcon(R.drawable.selector_lizard));
+        tabLayout.addTab(tabLayout.newTab().setText("Frog").setIcon(R.drawable.selector_frog));
+        tabLayout.addTab(tabLayout.newTab().setText("Snake").setIcon(R.drawable.selector_snake));
+        tabLayout.addTab(tabLayout.newTab().setText("Turtle").setIcon(R.drawable.selector_turtle));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 

@@ -88,6 +88,8 @@ public class AddSpeciesActivity extends AppCompatActivity {
     ImageView Ventral;
     @BindView(R.id.Lateral)
     ImageView Lateral;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
 
     @Override
@@ -96,7 +98,6 @@ public class AddSpeciesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_species);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

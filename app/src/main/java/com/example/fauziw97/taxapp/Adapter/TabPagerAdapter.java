@@ -25,7 +25,6 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
     }
 
 
-
     //Overriding method getItem
     @Override
     public Fragment getItem(int position) {
