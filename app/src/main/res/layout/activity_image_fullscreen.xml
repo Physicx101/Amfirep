@@ -12,7 +12,7 @@
         layout="@layout/toolbar"
         android:id="@+id/toolbar" />
 
-    <com.example.fauziw97.taxapp.TouchImageView
+    <com.example.fauziw97.taxapp.View.TouchImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

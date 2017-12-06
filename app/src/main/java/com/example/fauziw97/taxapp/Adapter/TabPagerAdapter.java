@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.fauziw97.taxapp.FragmentTurtle;
-import com.example.fauziw97.taxapp.FragmentLizard;
-import com.example.fauziw97.taxapp.FragmentSnake;
-import com.example.fauziw97.taxapp.FragmentFrog;
+import com.example.fauziw97.taxapp.TurtleFragment;
+import com.example.fauziw97.taxapp.LizardFragment;
+import com.example.fauziw97.taxapp.SnakeFragment;
+import com.example.fauziw97.taxapp.FrogFragment;
 
 /**
  * Created by Fauziw97 on 9/12/17.
@@ -31,16 +31,16 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
         //Returning the current tabs
         switch (position) {
             case 0:
-                FragmentLizard tab1 = new FragmentLizard();
+                LizardFragment tab1 = new LizardFragment();
                 return tab1;
             case 1:
-                FragmentFrog tab2 = new FragmentFrog();
+                FrogFragment tab2 = new FrogFragment();
                 return tab2;
             case 2:
-                FragmentSnake tab3 = new FragmentSnake();
+                SnakeFragment tab3 = new SnakeFragment();
                 return tab3;
             case 3:
-                FragmentTurtle tab4 = new FragmentTurtle();
+                TurtleFragment tab4 = new TurtleFragment();
                 return tab4;
             default:
                 return null;

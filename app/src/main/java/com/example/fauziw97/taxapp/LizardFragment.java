@@ -36,14 +36,14 @@ import static com.example.fauziw97.taxapp.MainActivity.role;
  * Created by Fauziw97 on 9/12/17.
  */
 
-public class FragmentSnake extends Fragment {
+public class LizardFragment extends Fragment {
 
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
     private RecyclerView.Adapter mAdapter;
     private List<SpeciesModel> mSpeciesModels;
     private GridSpacingItemDecoration spacingDecoration;
 
-    @BindView(R.id.recycler_view_snake)
+    @BindView(R.id.recycler_view_lizard)
     RecyclerView mRecyclerView;
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
@@ -54,7 +54,7 @@ public class FragmentSnake extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_snake, container, false);
+        View view = inflater.inflate(R.layout.fragment_lizard, container, false);
         ButterKnife.bind(this, view);
 
         spacingDecoration = new GridSpacingItemDecoration(2, Measure.pxToDp(16, getContext()), true);
@@ -81,9 +81,9 @@ public class FragmentSnake extends Fragment {
     private void retrieveData() {
 
         mProgressBar.setVisibility(View.VISIBLE);
-        DatabaseReference snakeData = mRef.child("Amfirep");
-        Query snakeList = snakeData.orderByChild("Jenis").equalTo("Snake");
-        snakeList.addValueEventListener(new ValueEventListener() {
+        DatabaseReference lizardData = mRef.child("Amfirep");
+        Query lizardList = lizardData.orderByChild("Jenis").equalTo("Lizard");
+        lizardList.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -108,12 +108,10 @@ public class FragmentSnake extends Fragment {
         });
     }
     @OnClick(R.id.fabSpecies)
-    public void addSnake(View view) {
-        AddSpeciesActivity.JenisHewan = "Snake";
+    public void addLizard(View view) {
+        AddSpeciesActivity.JenisHewan = "Lizard";
         startActivity(new Intent(getActivity(), AddSpeciesActivity.class));
 
     }
-
-
 
 }

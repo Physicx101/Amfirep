@@ -36,7 +36,7 @@ import static com.example.fauziw97.taxapp.MainActivity.role;
  * Created by Fauziw97 on 9/12/17.
  */
 
-public class FragmentTurtle extends Fragment {
+public class TurtleFragment extends Fragment {
 
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
     private RecyclerView.Adapter mAdapter;

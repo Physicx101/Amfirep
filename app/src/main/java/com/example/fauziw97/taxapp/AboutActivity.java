@@ -13,6 +13,23 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AboutActivity extends AppCompatActivity {
+    @BindView(R.id.mailAbdul)
+    LinearLayout mailAbdul;
+    @BindView(R.id.facebookAbdul)
+    LinearLayout facebookAbdul;
+    @BindView(R.id.mailAji)
+    LinearLayout mailAji;
+    @BindView(R.id.facebookAji)
+    LinearLayout facebookAji;
+    @BindView(R.id.mailNishfi)
+    LinearLayout mailNishfi;
+    @BindView(R.id.facebookNisfhi)
+    LinearLayout facebookNishfi;
+    @BindView(R.id.mailNoor)
+    LinearLayout mailNoor;
+    @BindView(R.id.facebookNoor)
+    LinearLayout facebookNoor;
+
     @BindView(R.id.mailBogi)
     LinearLayout mailBogi;
     @BindView(R.id.facebookBogi)
@@ -30,6 +47,7 @@ public class AboutActivity extends AppCompatActivity {
 
     String urlFacebookBogi, urlGithubBogi;
     String urlFacebookTommy, urlGithubTommy;
+    String urlFacebookAbdul, urlFacebookAji, urlFacebookNishfi, urlFacebookNoor;
 
 
     @Override
@@ -38,6 +56,9 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
 
+        urlFacebookAbdul = "https://www.facebook.com/afattah19";
+        urlFacebookAji = "https://www.facebook.com/ajipamula.gunawanputra";
+        urlFacebookNishfi = "https://www.facebook.com/nishfi.laila";
         urlFacebookBogi = "https://www.facebook.com/bogiwibowo";
         urlFacebookTommy = "https://www.facebook.com/tommy.zeroztoheroz";
         urlGithubBogi = "https://github.com/physicx101";
@@ -49,6 +70,53 @@ public class AboutActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Tentang");
 
 
+    }
+
+    @OnClick({R.id.mailAbdul, R.id.facebookAbdul, R.id.mailAji, R.id.facebookAji, R.id.mailNishfi, R.id.facebookNisfhi, R.id.mailNoor})
+    public void linkTeam(View view) {
+        switch (view.getId()) {
+            case R.id.mailAbdul:
+                Intent intentMailAbdul = new Intent(Intent.ACTION_SENDTO);
+                intentMailAbdul.setData(Uri.parse("mailto:afattah1996@gmail.com"));
+                startActivity(intentMailAbdul);
+                break;
+
+            case R.id.facebookAbdul:
+                Intent intentFbAbdul = new Intent(Intent.ACTION_VIEW);
+                intentFbAbdul.setData(Uri.parse(urlFacebookAbdul));
+                startActivity(intentFbAbdul);
+                break;
+
+            case R.id.mailAji:
+                Intent intentMailAji = new Intent(Intent.ACTION_SENDTO);
+                intentMailAji.setData(Uri.parse("mailto:gttaji@yahoo.com"));
+                startActivity(intentMailAji);
+                break;
+
+            case R.id.facebookAji:
+                Intent intentFbAji = new Intent(Intent.ACTION_VIEW);
+                intentFbAji.setData(Uri.parse(urlFacebookAji));
+                startActivity(intentFbAji);
+                break;
+
+            case R.id.mailNishfi:
+                Intent intentMailNishfi = new Intent(Intent.ACTION_SENDTO);
+                intentMailNishfi.setData(Uri.parse("mailto:lailanishfi@gmail.com"));
+                startActivity(intentMailNishfi);
+                break;
+
+            case R.id.facebookNisfhi:
+                Intent intentFbNishfi = new Intent(Intent.ACTION_VIEW);
+                intentFbNishfi.setData(Uri.parse(urlFacebookNishfi));
+                startActivity(intentFbNishfi);
+                break;
+
+            case R.id.mailNoor:
+                Intent intentMailNoor = new Intent(Intent.ACTION_VIEW);
+                intentMailNoor.setData(Uri.parse("mailto:noor.laina.m@gmail.com"));
+                startActivity(intentMailNoor);
+                break;
+        }
     }
 
     @OnClick({R.id.mailBogi, R.id.facebookBogi, R.id.githubBogi})
