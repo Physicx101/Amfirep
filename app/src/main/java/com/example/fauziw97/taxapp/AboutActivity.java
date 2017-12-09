@@ -8,9 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AboutActivity extends AppCompatActivity {
     @BindView(R.id.mailAbdul)
@@ -44,6 +47,18 @@ public class AboutActivity extends AppCompatActivity {
     LinearLayout githubTommy;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.iv_Abdul)
+    CircleImageView ivAbdul;
+    @BindView(R.id.iv_Aji)
+    CircleImageView ivAji;
+    @BindView(R.id.iv_Nishfi)
+    CircleImageView ivNishfi;
+    @BindView(R.id.iv_Noor)
+    CircleImageView ivNoor;
+    @BindView(R.id.iv_Bogi)
+    CircleImageView ivBogi;
+    @BindView(R.id.iv_Tommy)
+    CircleImageView ivTommy;
 
     String urlFacebookBogi, urlGithubBogi;
     String urlFacebookTommy, urlGithubTommy;
@@ -69,7 +84,24 @@ public class AboutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle("Tentang");
 
-
+        Glide.with(this)
+                .load(R.drawable.abdul)
+                .into(ivAbdul);
+        Glide.with(this)
+                .load(R.drawable.aji)
+                .into(ivAji);
+        Glide.with(this)
+                .load(R.drawable.nishfi)
+                .into(ivNishfi);
+        Glide.with(this)
+                .load(R.drawable.noor)
+                .into(ivNoor);
+        Glide.with(this)
+                .load(R.drawable.bogi)
+                .into(ivBogi);
+        Glide.with(this)
+                .load(R.drawable.tommy)
+                .into(ivTommy);
     }
 
     @OnClick({R.id.mailAbdul, R.id.facebookAbdul, R.id.mailAji, R.id.facebookAji, R.id.mailNishfi, R.id.facebookNisfhi, R.id.mailNoor})

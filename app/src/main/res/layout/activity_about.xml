@@ -96,8 +96,88 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:text="Terimakasih Kepada"
+                android:textColor="@color/colorPrimary"/>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/about_special_thanks_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                android:clickable="true">
+
+                    <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:paddingEnd="@dimen/sub_big_spacing"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1. Fakultas Biologi UGM"
+                            android:textColor="@color/primary_text"
+                            android:textSize="18sp"
+                            android:layout_marginTop="8dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2. Kemenristek dikti"
+                            android:textColor="@color/primary_text"
+                            android:textSize="18sp"
+                            android:layout_marginTop="16dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3. Alumni Kelompok Studi Herpetologi"
+                            android:textColor="@color/primary_text"
+                            android:textSize="18sp"
+                            android:layout_marginTop="16dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fakultas Biologi UGM"
+                            android:layout_marginStart="20dp"
+                            android:textColor="@color/primary_text"
+                            android:textSize="18sp"
+                            android:layout_marginTop="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4. Kelompok Studi Herpetologi"
+                            android:textColor="@color/primary_text"
+                            android:textSize="18sp"
+                            android:layout_marginTop="16dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fakultas Biologi UGM"
+                            android:layout_marginStart="20dp"
+                            android:textColor="@color/primary_text"
+                            android:textSize="18sp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="8dp"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:text="Tim Tax App"
-                android:textColor="@color/secondary_text"/>
+                android:textColor="@color/colorPrimary"/>
 
             <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -105,8 +185,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center"
-                                                android:layout_marginBottom="4dp"
-                                                app:cardUseCompatPadding="true">
+                                                android:layout_marginBottom="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -126,12 +205,12 @@
                         android:paddingRight="16dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_Abdul"
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginBottom="8dp"
                             android:layout_marginTop="8dp"
-                            android:src="@drawable/abdul"
                             app:civ_border_color="@color/colorPrimary"
                             app:civ_border_width="2dp"/>
 
@@ -239,8 +318,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center"
-                                                android:layout_marginBottom="4dp"
-                                                app:cardUseCompatPadding="true">
+                                                android:layout_marginBottom="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -260,12 +338,12 @@
                         android:paddingRight="16dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_Aji"
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginBottom="8dp"
                             android:layout_marginTop="8dp"
-                            android:src="@drawable/aji"
                             app:civ_border_color="@color/colorPrimary"
                             app:civ_border_width="2dp"/>
 
@@ -372,8 +450,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center"
-                                                android:layout_marginBottom="4dp"
-                                                app:cardUseCompatPadding="true">
+                                                android:layout_marginBottom="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -393,12 +470,12 @@
                         android:paddingRight="16dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_Nishfi"
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginBottom="8dp"
                             android:layout_marginTop="8dp"
-                            android:src="@drawable/nishfi"
                             app:civ_border_color="@color/colorPrimary"
                             app:civ_border_width="2dp"/>
 
@@ -505,8 +582,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center"
-                                                android:layout_marginBottom="4dp"
-                                                app:cardUseCompatPadding="true">
+                                                android:layout_marginBottom="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -526,12 +602,12 @@
                         android:paddingRight="16dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_Noor"
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginBottom="8dp"
                             android:layout_marginTop="8dp"
-                            android:src="@drawable/noor"
                             app:civ_border_color="@color/colorPrimary"
                             app:civ_border_width="2dp"/>
 
@@ -639,8 +715,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center"
-                                                android:layout_marginBottom="4dp"
-                                                app:cardUseCompatPadding="true">
+                                                android:layout_marginBottom="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -660,12 +735,12 @@
                         android:paddingRight="16dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_Bogi"
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginBottom="8dp"
                             android:layout_marginTop="8dp"
-                            android:src="@drawable/bogi"
                             app:civ_border_color="@color/colorPrimary"
                             app:civ_border_width="2dp"/>
 
@@ -804,8 +879,7 @@
                                                 xmlns:tools="http://schemas.android.com/tools"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:layout_gravity="center"
-                                                app:cardUseCompatPadding="true">
+                                                android:layout_gravity="center">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -827,12 +901,12 @@
                         android:paddingRight="16dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_Tommy"
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginBottom="8dp"
                             android:layout_marginTop="8dp"
-                            android:src="@drawable/tommy"
                             app:civ_border_color="@color/colorPrimary"
                             app:civ_border_width="2dp"/>
 

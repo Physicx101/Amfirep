@@ -14,30 +14,31 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
-        android:largeHeap="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".SplashActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
         <activity android:name=".AddSpeciesActivity"/>
         <activity android:name=".SpeciesDetailsActivity"/>
         <activity android:name=".ImageFullscreenActivity"/>
-
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"/>
         <activity android:name=".AboutActivity">
+        </activity>
+        <activity android:name=".GuideActivity">
         </activity>
     </application>
 

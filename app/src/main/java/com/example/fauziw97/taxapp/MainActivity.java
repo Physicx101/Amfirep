@@ -206,6 +206,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             return true;
         }
 
+        if (id == R.id.action_guide) {
+            Intent intent = new Intent(this, GuideActivity.class);
+            this.startActivity(intent);
+            return true;
+        }
+
         if (id == R.id.action_about) {
             Intent intent = new Intent(this, AboutActivity.class);
             this.startActivity(intent);
