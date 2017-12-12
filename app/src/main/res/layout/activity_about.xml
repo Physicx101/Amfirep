@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:padding="4dp"
-                        android:text="TAX App"
+                        android:text="TaxApp"
                         android:textColor="@color/colorPrimary"
                         android:textSize="24sp"
                         android:textStyle="bold"/>
@@ -72,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:padding="4dp"
-                        android:text="Aplikasi taksonomi untuk reptil dan amfibi"
+                        android:text="Aplikasi untuk identifikasi reptil dan amfibi"
                         android:textColor="@color/primary_text"
                         android:textSize="14sp"/>
 
@@ -234,7 +234,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="Tax App Team"
+                                android:text="TaxApp Team"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/secondary_text"
                                 android:textSize="14sp"/>
@@ -367,7 +367,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="Tax App Team"
+                                android:text="TaxApp Team"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/secondary_text"
                                 android:textSize="14sp"/>
@@ -499,7 +499,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="Tax App Team"
+                                android:text="TaxApp Team"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/secondary_text"
                                 android:textSize="14sp"/>
@@ -631,7 +631,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="Tax App Team"
+                                android:text="TaxApp Team"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/secondary_text"
                                 android:textSize="14sp"/>

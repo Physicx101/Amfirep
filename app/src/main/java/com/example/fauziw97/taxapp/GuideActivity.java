@@ -73,4 +73,10 @@ public class GuideActivity extends AppCompatActivity {
         guide = new GuideModel(images[7], "Panduan Rumus Selaput");
         guideList.add(guide);
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }
