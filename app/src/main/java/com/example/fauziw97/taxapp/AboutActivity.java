@@ -1,68 +1,39 @@
 package com.example.fauziw97.taxapp;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
+import com.example.fauziw97.taxapp.Adapter.InstitutionAdapter;
+import com.example.fauziw97.taxapp.Adapter.TeamAdapter;
+import com.example.fauziw97.taxapp.Model.InstitutionModel;
+import com.example.fauziw97.taxapp.Model.TeamModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AboutActivity extends AppCompatActivity {
-    @BindView(R.id.mailAbdul)
-    LinearLayout mailAbdul;
-    @BindView(R.id.facebookAbdul)
-    LinearLayout facebookAbdul;
-    @BindView(R.id.mailAji)
-    LinearLayout mailAji;
-    @BindView(R.id.facebookAji)
-    LinearLayout facebookAji;
-    @BindView(R.id.mailNishfi)
-    LinearLayout mailNishfi;
-    @BindView(R.id.facebookNisfhi)
-    LinearLayout facebookNishfi;
-    @BindView(R.id.mailNoor)
-    LinearLayout mailNoor;
-    @BindView(R.id.facebookNoor)
-    LinearLayout facebookNoor;
-
-    @BindView(R.id.mailBogi)
-    LinearLayout mailBogi;
-    @BindView(R.id.facebookBogi)
-    LinearLayout facebookBogi;
-    @BindView(R.id.githubBogi)
-    LinearLayout githubBogi;
-    @BindView(R.id.mailTommy)
-    LinearLayout mailTommy;
-    @BindView(R.id.facebookTommy)
-    LinearLayout facebookTommy;
-    @BindView(R.id.githubTommy)
-    LinearLayout githubTommy;
+    @BindView(R.id.recycler_view_team)
+    RecyclerView rv_team;
+    @BindView(R.id.recycler_view_thanks)
+    RecyclerView rv_thanks;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.iv_Abdul)
-    CircleImageView ivAbdul;
-    @BindView(R.id.iv_Aji)
-    CircleImageView ivAji;
-    @BindView(R.id.iv_Nishfi)
-    CircleImageView ivNishfi;
-    @BindView(R.id.iv_Noor)
-    CircleImageView ivNoor;
-    @BindView(R.id.iv_Bogi)
-    CircleImageView ivBogi;
-    @BindView(R.id.iv_Tommy)
-    CircleImageView ivTommy;
 
-    String urlFacebookBogi, urlGithubBogi;
-    String urlFacebookTommy, urlGithubTommy;
-    String urlFacebookAbdul, urlFacebookAji, urlFacebookNishfi, urlFacebookNoor;
+    DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+    private List<TeamModel> mTeamModels;
+    private List<InstitutionModel> mInstModels;
+    private RecyclerView.Adapter mAdapter, instAdapter;
 
 
     @Override
@@ -70,132 +41,80 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
+        mInstModels = new ArrayList<>();
+        mTeamModels = new ArrayList<>();
+        retrieveInst();
+        retrieveData();
 
-        urlFacebookAbdul = "https://www.facebook.com/afattah19";
-        urlFacebookAji = "https://www.facebook.com/ajipamula.gunawanputra";
-        urlFacebookNishfi = "https://www.facebook.com/nishfi.laila";
-        urlFacebookBogi = "https://www.facebook.com/bogiwibowo";
-        urlFacebookTommy = "https://www.facebook.com/tommy.zeroztoheroz";
-        urlGithubBogi = "https://github.com/physicx101";
-        urlGithubTommy = "https://github.com/tommywahyu44";
+        //Recycler View Thanks
+        rv_thanks.setHasFixedSize(true);
+        rv_thanks.setNestedScrollingEnabled(false);
+        rv_thanks.setLayoutManager(new LinearLayoutManager(this));
+
+        //Recycler View Team
+        rv_team.setHasFixedSize(true);
+        rv_team.setNestedScrollingEnabled(false);
+        rv_team.setLayoutManager(new LinearLayoutManager(this));
+
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle("Tentang");
 
-        Glide.with(this)
-                .load(R.drawable.abdul)
-                .into(ivAbdul);
-        Glide.with(this)
-                .load(R.drawable.aji)
-                .into(ivAji);
-        Glide.with(this)
-                .load(R.drawable.nishfi)
-                .into(ivNishfi);
-        Glide.with(this)
-                .load(R.drawable.noor)
-                .into(ivNoor);
-        Glide.with(this)
-                .load(R.drawable.bogi)
-                .into(ivBogi);
-        Glide.with(this)
-                .load(R.drawable.tommy)
-                .into(ivTommy);
+
     }
 
-    @OnClick({R.id.mailAbdul, R.id.facebookAbdul, R.id.mailAji, R.id.facebookAji, R.id.mailNishfi, R.id.facebookNisfhi, R.id.mailNoor})
-    public void linkTeam(View view) {
-        switch (view.getId()) {
-            case R.id.mailAbdul:
-                Intent intentMailAbdul = new Intent(Intent.ACTION_SENDTO);
-                intentMailAbdul.setData(Uri.parse("mailto:afattah1996@gmail.com"));
-                startActivity(intentMailAbdul);
-                break;
+    private void retrieveInst() {
+        DatabaseReference refThanks = mRef.child("Thanks");
+        refThanks.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    InstitutionModel instModel = new InstitutionModel(
+                            snapshot.child("nama").getValue(String.class),
+                            snapshot.child("logo").getValue(String.class));
 
-            case R.id.facebookAbdul:
-                Intent intentFbAbdul = new Intent(Intent.ACTION_VIEW);
-                intentFbAbdul.setData(Uri.parse(urlFacebookAbdul));
-                startActivity(intentFbAbdul);
-                break;
+                    mInstModels.add(instModel);
 
-            case R.id.mailAji:
-                Intent intentMailAji = new Intent(Intent.ACTION_SENDTO);
-                intentMailAji.setData(Uri.parse("mailto:gttaji@yahoo.com"));
-                startActivity(intentMailAji);
-                break;
+                    instAdapter = new InstitutionAdapter(getApplicationContext(), mInstModels);
+                    rv_thanks.setAdapter(instAdapter);
+                }
+            }
 
-            case R.id.facebookAji:
-                Intent intentFbAji = new Intent(Intent.ACTION_VIEW);
-                intentFbAji.setData(Uri.parse(urlFacebookAji));
-                startActivity(intentFbAji);
-                break;
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-            case R.id.mailNishfi:
-                Intent intentMailNishfi = new Intent(Intent.ACTION_SENDTO);
-                intentMailNishfi.setData(Uri.parse("mailto:lailanishfi@gmail.com"));
-                startActivity(intentMailNishfi);
-                break;
-
-            case R.id.facebookNisfhi:
-                Intent intentFbNishfi = new Intent(Intent.ACTION_VIEW);
-                intentFbNishfi.setData(Uri.parse(urlFacebookNishfi));
-                startActivity(intentFbNishfi);
-                break;
-
-            case R.id.mailNoor:
-                Intent intentMailNoor = new Intent(Intent.ACTION_VIEW);
-                intentMailNoor.setData(Uri.parse("mailto:noor.laina.m@gmail.com"));
-                startActivity(intentMailNoor);
-                break;
-        }
+            }
+        });
     }
 
-    @OnClick({R.id.mailBogi, R.id.facebookBogi, R.id.githubBogi})
-    public void linkBogi(View view) {
-        switch (view.getId()) {
-            case R.id.mailBogi:
-                Intent intentMail = new Intent(Intent.ACTION_SENDTO);
-                intentMail.setData(Uri.parse("mailto:ahmadfauziw97@gmail.com"));
-                startActivity(intentMail);
-                break;
+    private void retrieveData() {
+        DatabaseReference refTeam = mRef.child("Team");
+        refTeam.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    TeamModel teamModel = new TeamModel(
+                            snapshot.child("foto").getValue(String.class),
+                            snapshot.child("nama").getValue(String.class),
+                            snapshot.child("email").getValue(String.class),
+                            snapshot.child("facebook").getValue(String.class));
 
-            case R.id.facebookBogi:
-                Intent intentFb = new Intent(Intent.ACTION_VIEW);
-                intentFb.setData(Uri.parse(urlFacebookBogi));
-                startActivity(intentFb);
-                break;
+                    mTeamModels.add(teamModel);
 
-            case R.id.githubBogi:
-                Intent intentGit = new Intent(Intent.ACTION_VIEW);
-                intentGit.setData(Uri.parse(urlGithubBogi));
-                startActivity(intentGit);
-                break;
-        }
+                    mAdapter = new TeamAdapter(mTeamModels, getApplicationContext());
+                    rv_team.setAdapter(mAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
-    @OnClick({R.id.mailTommy, R.id.facebookTommy, R.id.githubTommy})
-    public void linkTommy(View view) {
-        switch (view.getId()) {
-            case R.id.mailTommy:
-                Intent intentMail = new Intent(Intent.ACTION_SENDTO);
-                intentMail.setData(Uri.parse("mailto:tommywahyu44@gmail.com"));
-                startActivity(intentMail);
-                break;
-
-            case R.id.facebookTommy:
-                Intent intentFb = new Intent(Intent.ACTION_VIEW);
-                intentFb.setData(Uri.parse(urlFacebookTommy));
-                startActivity(intentFb);
-                break;
-
-            case R.id.githubTommy:
-                Intent intentGit = new Intent(Intent.ACTION_VIEW);
-                intentGit.setData(Uri.parse(urlGithubTommy));
-                startActivity(intentGit);
-                break;
-        }
-    }
 
     @Override
     public boolean onSupportNavigateUp() {
